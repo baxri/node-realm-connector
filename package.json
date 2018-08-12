@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/baxri/node-realm-connector/issues"
   },
-  "homepage": "https://github.com/baxri/node-realm-connector#readme"
+  "homepage": "https://github.com/baxri/node-realm-connector#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "realm": "^2.14.2"
+  }
 }
