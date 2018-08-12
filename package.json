@@ -1,0 +1,19 @@
+{
+  "name": "node-realm-connector",
+  "version": "1.0.0",
+  "description": "Node Realm Connector For HACCP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baxri/node-realm-connector.git"
+  },
+  "author": "BIBI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baxri/node-realm-connector/issues"
+  },
+  "homepage": "https://github.com/baxri/node-realm-connector#readme"
+}
