@@ -11,8 +11,13 @@ let realm = new Realm({
 });
 
 app.get('/', function (req, res) {
-    let items = realm.objects(req.query.document);
-    res.json(items);
+    let result = realm.objects(req.query.document);
+    if (req.query.filter.length > 0 && req.query.filter_args.length > 0) {
+        let filter = req.query.filter.replace("/", "=");
+        result = result.filtered(filter, req.query.filter_args);
+    }
+
+    res.json(result);
 });
 
 app.listen(8080, function () {
