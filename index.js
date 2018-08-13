@@ -11,10 +11,16 @@ let realm = new Realm({
 });
 
 app.get('/', function (req, res) {
+
+    
+
     let result = realm.objects(req.query.document);
     if (req.query.filter.length > 0 && req.query.filter_args.length > 0) {
         let filter = req.query.filter.replace("/", "=");
-        result = result.filtered(filter, req.query.filter_args);
+
+        res.json(filter);
+
+        result = result.filtered(...[filter, ...req.query.filter_args]);
     }
 
     res.json(result);
