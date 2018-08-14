@@ -7,11 +7,14 @@ let realm = new Realm({
     path: realmPath,
 });
 
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
+
 app.get('/', function (req, res) {
     let result = realm.objects(req.query.document);
     if (req.query.filter.length > 0 && req.query.filter_args.length > 0) {
-        let filter = req.query.filter.replace('/', '=');
-        res.json(filter);
+        let filter = replaceAll(req.query.filter, '/', '=');
         result = result.filtered(...[filter, ...req.query.filter_args]);
     }
 
