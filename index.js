@@ -1,20 +1,24 @@
 var Realm = require('realm');
 var express = require('express');
 
-
-
 const app = express();
-const realmPath = './DB/haccp-db-8.realm';
-
-let realm = new Realm({
-    path: realmPath,
-});
 
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
 
 app.get('/', function (req, res) {
+
+    var realmPath = (require('./config/index')).db;
+
+    if (req.query.realm_path) {
+        realmPath = req.query.realm_path;
+    }
+
+    let realm = new Realm({
+        path: realmPath,
+    });
+
     let result = realm.objects(req.query.document);
 
     if (req.query.filter && req.query.filter_args) {

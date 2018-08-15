@@ -54,6 +54,16 @@ curl http://localhost:8080/?document={REALM_TABLE_NAME}&limit=5&limitstart=0
 
 To get infomation from 0 and 5 rows.
 
+### Realm path
+
+You can set up realm path in ```config/index.js``` file or pass it dynamically as argument:
+
+```
+curl http://localhost:8080/?document={REALM_TABLE_NAME}&realm_path=./db/default.realm
+```
+
+
+
 
 
 
