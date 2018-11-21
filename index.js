@@ -43,7 +43,12 @@ app.get('/', function (req, res) {
         result = result.slice(limitstart, req.query.limit);
     }
 
-    res.json(result);
+    var arr = [];
+    Object.keys(result).map(([key]) => {
+        arr.push(result[key])
+    });
+
+    res.json(arr);
 });
 
 app.listen(8080, function () {
