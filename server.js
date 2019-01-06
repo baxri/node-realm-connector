@@ -3,20 +3,15 @@ var express = require('express');
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);
 }
 
 app.use(function (req, res, next) {
-
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    // res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
     next();
 });
 
@@ -53,22 +48,26 @@ app.get('/', function (req, res) {
     }
 
     if (req.query.limit) {
-        result = result.slice(limitstart, req.query.limit);
+        result = result.slice(limitstart, limitstart + req.query.limit + 1);
     }
 
     var arr = [];
-    Object.keys(result).map(([key]) => {
+    Object.keys(result).map((key) => {
         arr.push(result[key])
     });
+
+    arr = arr.map(picture => {
+        return {
+            id: picture.id,
+            source: picture.source,
+            date: picture.date,
+            created_at: picture.created_at,
+        }
+    })
 
     res.json(arr);
 });
 
-app.listen(8080, function () {
-    console.log('App listening on port 8080!');
+app.listen(port, function () {
+    console.log(`App listening on port ${port}!`);
 });
-
-console.log(app);
-
-
-
